@@ -8,7 +8,21 @@ import { Component,trigger,state,style,transition,animate,keyframes } from '@ang
   <li *ngFor="let item of items" [@myTrigger]='state'>{{item}}</li>
   </ul>
   `,
-  styles:[],
+  styles:[`
+    ul{
+      list-style-type:none;
+      margin:30px 30px 0 0; padding 0;
+    }
+    li{
+      padding:15px;
+      width:100%;
+      background-color:#f1f1f1;
+      margin-bottom:2px;
+      font-weight:bold;
+    }
+
+
+  `],
   animations:[
     trigger('myTrigger',[
       state('small',style({
@@ -23,7 +37,7 @@ import { Component,trigger,state,style,transition,animate,keyframes } from '@ang
       //transition('small<=>large',animate('500ms'))
       transition('void=>*',[
         style({opacity:'0',transform:'translateY(20px)'}),
-        animate('500ms')
+        animate('500ms 3s')
       ])
 ])
   ]
