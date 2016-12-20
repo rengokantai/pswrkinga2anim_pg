@@ -2,7 +2,12 @@ import { Component,trigger,state,style,transition,animate,keyframes } from '@ang
 
 @Component({
   selector: 'my-app',
-  template:`<button [@myTrigger]='state' (click)='toggleState()'>test</button>`,
+  //template:`<button [@myTrigger]='state' (click)='toggleState()'>test</button>`,
+  template:`<button (click)='toggleState()'>test</button>
+  <ul>
+  <li *ngFor="let item of items" [@myTrigger]='state'>{{item}}</li>
+  </ul>
+  `,
   styles:[],
   animations:[
     trigger('myTrigger',[
@@ -12,12 +17,23 @@ import { Component,trigger,state,style,transition,animate,keyframes } from '@ang
       state('large',style({
         transform:'scale(1.4)'
       })),
-      transition('small<=>large',animate('500ms'))
+      state('fadeIn',style({
+        opacity:'1'
+      })),
+      //transition('small<=>large',animate('500ms'))
+      transition('void=>*',[
+        style({opacity:'0',transform:'translateY(20px)'}),
+        animate('500ms')
+      ])
+])
   ]
 })
 export class AppComponent  {
   state: string='small';
+  items=['a','b'];
   toggleState(){
-    this.state =(this.state==='small'?'large':'small');
+    //this.state =(this.state==='small'?'large':'small');
+    this.items.push('another');
+    this.state="fadeIn";
   }
 }
