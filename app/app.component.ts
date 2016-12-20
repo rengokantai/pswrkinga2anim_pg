@@ -2,7 +2,7 @@ import { Component,trigger,state,style,transition,animate,keyframes } from '@ang
 
 @Component({
   selector: 'my-app',
-  template:`<button [@myTrigger]='state'>test</button>`,
+  template:`<button [@myTrigger]='state' (click)='toggleState()'>test</button>`,
   styles:[],
   animations:[
     trigger('myTrigger',[
@@ -18,4 +18,7 @@ import { Component,trigger,state,style,transition,animate,keyframes } from '@ang
 })
 export class AppComponent  {
   state: string='large';
+  toggleState(){
+    this.state =(this.state==='small'?'large':'small');
+  }
 }
