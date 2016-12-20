@@ -12,12 +12,13 @@ import { Component,trigger,state,style,transition,animate,keyframes } from '@ang
       state('large',style({
         transform:'scale(1.4)'
       })),
-
+      transition('small=>large',animate('500ms')),
+      transition('large=>small',animate('500ms'))
     ])
   ]
 })
 export class AppComponent  {
-  state: string='large';
+  state: string='small';
   toggleState(){
     this.state =(this.state==='small'?'large':'small');
   }
