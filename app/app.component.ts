@@ -5,8 +5,9 @@ import { Component,trigger,state,style,transition,animate,keyframes } from '@ang
   //template:`<button [@myTrigger]='state' (click)='toggleState()'>test</button>`,
   template:`<button (click)='toggleState()'>test</button>
   <ul>
-  <li *ngFor="let item of items" [@myTrigger]='state'>{{item}}</li>
+  <li *ngFor="let item of items" [@myTrigger]='state' (@myTrigger.start)="animStart($event)" (@myTrigger.done)="animDone($event)">{{item}}</li>
   </ul>
+  {{animDetails}}
   `,
   styles:[`
     ul{
@@ -50,10 +51,20 @@ import { Component,trigger,state,style,transition,animate,keyframes } from '@ang
 })
 export class AppComponent  {
   state: string='small';
-  items=['a','b'];
+  //items=['a','b'];
+  items=new Array();
+  animDetails:string='waiting'
   toggleState(){
     //this.state =(this.state==='small'?'large':'small');
     this.items.push('another');
     this.state="fadeIn";
+  }
+
+  animStart(event:any){
+    console.log(event)
+  }
+    animDone(event:any){
+    this.animDetails = event.totalTime
+
   }
 }
