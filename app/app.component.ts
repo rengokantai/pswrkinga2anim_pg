@@ -12,9 +12,7 @@ import { Component,trigger,state,style,transition,animate,keyframes } from '@ang
       state('large',style({
         transform:'scale(1.4)'
       })),
-      transition('small=>large',animate('500ms ease-in')),
-      transition('large=>small',animate('500ms ease-out'))
-    ])
+      transition('small=>large, large=>small',animate('500ms'))
   ]
 })
 export class AppComponent  {
