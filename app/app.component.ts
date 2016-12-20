@@ -6,10 +6,16 @@ import { Component,trigger,state,style,transition,animate,keyframes } from '@ang
   styles:[],
   animations:[
     trigger('myTrigger',[
+      state('small',style({
+        transform:'scale(1)'
+      })),
+      state('large',style({
+        transform:'scale(1.4)'
+      })),
 
     ])
   ]
 })
 export class AppComponent  {
-  state: string='ke';
+  state: string='large';
 }
